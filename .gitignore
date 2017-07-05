@@ -1,2 +1,16 @@
 node_modules
 public/bundle.js
+.DS_Store
+public/.DS_Store
+public/css/.DS_Store
+public/fonts/.DS_Store
+public/libs/.DS_Store
+public/libs/assets/.DS_Store
+public/libs/assets/bootstrap-rtl/.DS_Store
+public/libs/assets/bootstrap-rtl/dist/.DS_Store
+public/libs/assets/font-awesome/.DS_Store
+public/libs/jquery/.DS_Store
+public/libs/jquery/bootstrap/.DS_Store
+public/libs/jquery/bootstrap/dist/.DS_Store
+src/.DS_Store
+src/stylesheets/.DS_Store
