@@ -88,7 +88,7 @@ express()
   res.json(jedis.filter(jedi => jedi.id === parseInt(req.params.id))[0]);
 })
 .get('*', (req, res) => res.sendFile(__dirname + '/public/index.html')) // Needs to be last in chain
-.listen(3333);
+.listen(80);
 
 // Authentication middleware provided by express-jwt.
 // This middleware will check incoming requests for a valid
