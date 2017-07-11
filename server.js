@@ -2,6 +2,7 @@ var express = require('express'); // Server
 var bodyParser = require('body-parser'); // Parse API request body
 var mongoose = require('mongoose'); // Model creation for Mongo
 var Folder = require('./models/folder'); // Folder model for mongoose
+var Process = require('./models/folder');
 var config = require('./config'); // Imports Mongo Address setttings
 var logger = require('morgan'); // Logger
 var jwt = require('express-jwt'); // Authentication
@@ -68,12 +69,12 @@ express()
     //res.json({ message: 'Bear created!' });
  });
 })
-.post('api/process', function(req, res)) {
+.post('/api/process', function(req, res) {
     var process = new Process();// Create a new mongoose folder schema
     process.name = req.body.name;
     console.log( process.name );
 
-    folder.save(function(err){
+    process.save(function(err){
         if (err)
             res.send(err);
         res.json({ name: process.name});
