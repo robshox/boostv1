@@ -62,6 +62,7 @@ export const folders = (state, action) => {
     case 'ADD_FOLDER':
 
       let newFolder = { name: action.data, id: +new Date };
+
       return state.concat([newFolder]);
 
     default:

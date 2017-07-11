@@ -66,17 +66,28 @@ express()
     res.json({ name: folder.name});
     console.log('Folder was saved success')
     //res.json({ message: 'Bear created!' });
-  });
+ });
+})
+.post('api/process', function(req, res)) {
+    var process = new Process();// Create a new mongoose folder schema
+    process.name = req.body.name;
+    console.log( process.name );
 
+    folder.save(function(err){
+        if (err)
+            res.send(err);
+        res.json({ name: process.name});
+        console.log('Process was saved success')
+
+    });
 })
 .get('/api/getfolders', function(req,res) {
 
-            Folder.find(function(err, turkeys) {
-                            if (err)
-                                res.send(err);
-
-                        res.json(turkeys);
-                                });
+    Folder.find(function(err, turkeys) {
+        if (err)
+            res.send(err);
+            res.json(turkeys);
+    });
 })
 .get('/api/jedis', (req, res) => {
   const allJedis = jedis.map(jedi => {
