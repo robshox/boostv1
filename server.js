@@ -2,7 +2,7 @@ var express = require('express'); // Server
 var bodyParser = require('body-parser'); // Parse API request body
 var mongoose = require('mongoose'); // Model creation for Mongo
 var Folder = require('./models/folder'); // Folder model for mongoose
-var Process = require('./models/folder');
+var Process = require('./models/process');
 var config = require('./config'); // Imports Mongo Address setttings
 var logger = require('morgan'); // Logger
 var jwt = require('express-jwt'); // Authentication
@@ -72,6 +72,13 @@ express()
 .post('/api/process', function(req, res) {
     var process = new Process();// Create a new mongoose folder schema
     process.name = req.body.name;
+    process.details = req.body.details;
+   // convertStringFolder = parseInt(req.body.folder);
+    console.log(req.body.folder);
+    var convertId = new mongoose.Types.ObjectId(req.body.folder);
+    console.log( typeof convertId);
+    process._folder = convertId;
+    
     console.log( process.name );
 
     process.save(function(err){
@@ -83,13 +90,23 @@ express()
     });
 })
 .get('/api/getfolders', function(req,res) {
-
+	
     Folder.find(function(err, turkeys) {
         if (err)
             res.send(err);
             res.json(turkeys);
     });
 })
+.get('/api/getprocess/:folder_id', function(req,res) {
+	console.log(req.params.folder_id);
+	//var convertKit = '596773b9e61bfb0383092a8f' //new mongoose.Types.ObjectId(req.params.folder_id);
+	
+	Process.findById(req.params.folder_id, function(err, proc) {
+		if (err)
+		res.send(err);
+		res.json(proc);
+	});
+})	
 .get('/api/jedis', (req, res) => {
   const allJedis = jedis.map(jedi => {
     return { id: jedi.id, name: jedi.name }

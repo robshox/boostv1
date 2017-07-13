@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
-var processchema = new mongoose.Schema({
+var processSchema = new mongoose.Schema({
   name: String,
+  details: String,
+  _folder: { type: String, ref: 'Folder'}
 });
 
 module.exports = mongoose.model('Process', processSchema);
