@@ -107,6 +107,7 @@ a:hover .caret-white {
 }
 .progress,
 .progress-bar {
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 .progress-bar-primary {
@@ -137,7 +138,8 @@ a:hover .caret-white {
 }
 .alert {
   font-size: 13px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .alert .close i {
   font-size: 12px;
@@ -150,6 +152,7 @@ a:hover .caret-white {
 }
 .form-control,
 .form-control:focus {
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 .form-control:focus {
@@ -412,6 +415,7 @@ pre {
 }
 .dropdown-menu {
   border-radius: 2px;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #dee5e7;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -911,7 +915,8 @@ body {
     margin-bottom: 0;
   }
   .navbar-nav > li > a {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
   }
   .navbar-nav > li > a .up {
     top: 0;
@@ -924,7 +929,8 @@ body {
     background-color: #fff;
   }
   .navbar-form {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
@@ -944,6 +950,7 @@ html.bg {
 @media (min-width: 768px) {
   .app.container {
     width: 750px;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   }
   .app.container .app-aside {
@@ -1122,6 +1129,7 @@ html.bg {
     top: 0 !important;
     z-index: 1050;
     width: 200px;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   .app-aside-folded .navi li li a {
@@ -1321,6 +1329,7 @@ html.bg {
     top: auto !important;
     z-index: 1050;
     width: 200px;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   .app-aside-dock .app-aside .navi > ul > li .nav-sub-header {
@@ -1528,7 +1537,8 @@ html.bg {
 }
 .btn-link.active {
   webkit-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .btn-default {
   color: #58666e !important;
@@ -1536,6 +1546,7 @@ html.bg {
   border-color: #dee5e7;
   background-color: #fff;
   border-bottom-color: #d8e1e3;
+  -webkit-box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
   box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
 }
 .btn-default:hover,
@@ -2059,7 +2070,8 @@ fieldset[disabled] .btn-black.active {
   border-radius: 50%;
   border-style: solid;
   background: #edf1f2;
-  box-shadow: 0 0 0 4px #f0f3f4;
+  -webkit-box-shadow: 0 0 0 4px #f0f3f4;
+          box-shadow: 0 0 0 4px #f0f3f4;
 }
 .tl-wrap:hover:before {
   background: transparent;
@@ -2180,6 +2192,7 @@ fieldset[disabled] .btn-black.active {
   top: 1px;
   bottom: 1px;
   border-radius: 50%;
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   -webkit-transition: margin-left 0.3s;
   transition: margin-left 0.3s;
@@ -2295,7 +2308,8 @@ fieldset[disabled] .i-checks input + i:before {
 }
 .datepicker .btn-default {
   border-width: 0;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .datepicker .btn[disabled] {
   opacity: 0.4;
@@ -2309,6 +2323,7 @@ fieldset[disabled] .i-checks input + i:before {
   border: solid 1px #000 !important;
   border-radius: 3px;
   padding: 5px 10px !important;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   max-height: 12px;
 }
@@ -2512,7 +2527,7 @@ fieldset[disabled] .i-checks input + i:before {
   animation: fadeOutDown 0.5s;
 }
 .bg-gd {
-  background-image: -webkit-linear-gradient(top, rgba(40, 50, 60, 0) 0, rgba(40, 50, 60, 0.075) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(40, 50, 60, 0)), to(rgba(40, 50, 60, 0.075)));
   background-image: linear-gradient(to bottom, rgba(40, 50, 60, 0) 0, rgba(40, 50, 60, 0.075) 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', endColorstr='#1328323c', GradientType=0);
@@ -2520,7 +2535,7 @@ fieldset[disabled] .i-checks input + i:before {
           filter: none;
 }
 .bg-gd-dk {
-  background-image: -webkit-linear-gradient(top, rgba(40, 50, 60, 0) 10%, rgba(40, 50, 60, 0.5) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgba(40, 50, 60, 0)), to(rgba(40, 50, 60, 0.5)));
   background-image: linear-gradient(to bottom, rgba(40, 50, 60, 0) 10%, rgba(40, 50, 60, 0.5) 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0028323c', endColorstr='#8028323c', GradientType=0);
@@ -3486,16 +3501,19 @@ a.text-black:hover {
   display: inline-block !important;
 }
 .box-shadow {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 .box-shadow-lg {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
 }
 .text-shadow {
   font-size: 170px;
   text-shadow: 0 1px 0 #dee5e7, 0 2px 0 #fcfdfd, 0 5px 10px rgba(0, 0, 0, 0.125), 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 .no-shadow {
+  -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
 .wrapper-xs {

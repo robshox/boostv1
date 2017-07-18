@@ -28,22 +28,15 @@ const NewProcSetup = React.createClass ({
     console.log(props);
     console.log(props.folderId);
 
-
-
-
-
       return(
         <div className="col-sm-12">
-
           <div className="form-group">
 
            <select ref='selectFolderDrop' className="form-control input-lg"  id="sel1">
             {/*}<option value="" disabled selected>Choose Folder</option>*/}
-
                 {props.folders.map((folder, i) =>
-                  <option key={i} ref={folder.id} >{folder.name}</option>
-
-              )}
+                  <option key={i} value={folder.name} >{folder.name}</option>
+                )}
             </select>
           </div>
         <input type="text" ref='addProcess' className="form-control input-lg" placeholder="Enter Process Name"/>
@@ -54,14 +47,12 @@ const NewProcSetup = React.createClass ({
       );
   },
   addProcess(evt) {
-
         var name = ReactDOM.findDOMNode(this.refs.addProcess).value;
         var folderDets = ReactDOM.findDOMNode(this.refs.selectFolderDrop).value;
         //var folderDets = (this.props.folderId);
-         console.log( 'You Selected Folder ' + folderDets);
+         console.log( 'You Selected FolderId ' + folderDets);
          console.log('You selected Process ' + name);
         this.props.addProcess(name, folderDets);
-
     }
 });
 

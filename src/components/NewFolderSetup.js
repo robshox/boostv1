@@ -9,7 +9,7 @@ const mapStateToProps = ({ addingFolder, folders }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFolder:   name => dispatch(addFolder(name))
+  addFolder: name => dispatch(addFolder(name))
 });
 
 const NewFolderSetup = React.createClass({
@@ -21,11 +21,9 @@ const NewFolderSetup = React.createClass({
         </div>);
     },
     createFolder(evt) {
-
         var name = ReactDOM.findDOMNode(this.refs.addFolder).value;
         this.props.addFolder(name);
         console.log(name);
-
     }
 });
 

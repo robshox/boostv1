@@ -88,18 +88,19 @@ export const modalShowProc = () => ({type: 'ADD_MODAL_PROCESS'});
 export const modalShowDef = () => ({type: 'SHOW_MODAL_DEFAULT'});
 
 export const addCard    = card   => ({ type: 'ADD_CARD',    data: card   });
-export const addProcess = (name, folderDets)  => ({ type: 'ADD_PROCESS', processName: name, dets: folderDets});
+
 export const updateCard = card   => ({ type: 'UPDATE_CARD', data: card   });
 export const deleteCard = cardId => ({ type: 'DELETE_CARD', data: cardId });
 
 export const filterCards = query => ({ type: 'FILTER_CARDS', data: query });
 export const setShowBack = back  => ({ type: 'SHOW_BACK', data: back });
 
-export const receiveData = data => ({ type: 'RECEIVE_DATA', data: data }/*, console.log(data)*/);
+export const receiveData = data => ({ type: 'RECEIVE_DATA', data: data });
 // fetchData is called at launch to pull in state from express server
 // pull folders and processes from mongo
 export const fetchData = () => {
   return dispatch => {
+    console.log('testit');
     fetch('/api/getfolders')
 
       .then(res => res.json())
@@ -108,14 +109,54 @@ export const fetchData = () => {
   };
 };
 
+export const receiveProcessData = data => ({ type: 'RECEIVE_PROCESS_DATA', data: data });
 
-export const folderData = data => ({ type: 'ADD_FOLDER', data: data });
-// Add a new folder to mongodb and call folderData which adds folder to State
+export const fetchProcessAPI = (folderId) => {
+  return dispatch => {
+   console.log('fethProcessAPI')
+    fetch('/api/process/' + folderId)
+      .then(res => res.json()) // Never forget this needs to be () or you will get back null
+      .then(json => dispatch(receiveProcessData(json)));
+  };
+};
+
+
+export const clearProcess = () => ({ type: 'CLEAR_PROCESS'});
+
+
+export const folderData = data => ({ type: 'ADD_FOLDER', data: data }); // json/data from addFolder
+// Add a new folder to MongoDB via API and call folderData which adds folder to State
+
+export const addProcessOld = (name, folderDets)  => ({ type: 'ADD_PROCESS', processName: name, dets: folderDets});
+
+export const processToState = data => ({ type: 'ADD_PROCESS', data: data});
+
+export const addProcess = (name, folderDets) => {
+  return dispatch => {
+    console.log( name + folderDets )
+    fetch('/api/process', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        folder_name: folderDets
+      })
+    })
+    .then(res => res.json())
+    .then(json => console.log(json))
+  };
+};
+
 export const addFolder = (name) => {
   return dispatch => {
     console.log('addfolder POST');
     fetch('/api/folder', {
           method: 'POST',
+          mode: 'cors',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
@@ -124,14 +165,15 @@ export const addFolder = (name) => {
             name: name
           })
         })
-      .then(json => dispatch(folderData(name)))
+        .then(res => res.json()) // Fun with this returning Promise instead of object
+        //.then(json => console.log(json))
+        .then(json => dispatch(folderData(json)))
   };
 };
 
 //Maybe add a spinner here and error control
 // All the new stuff for Auth is here.
 
-import { CALL_API } from '../middleware/api'
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'

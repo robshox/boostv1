@@ -46,31 +46,8 @@ function run () {
 
 function save() {
   var state = store.getState();
-  console.log('updated state >');
+  console.log('updated state >q');
   console.log(state);
-  fetch('/api/data', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      folders: state.folders,
-      processes: state.processes,
-      test: 'nothing'
-    })
-  });
-  // fetch('/api/folder', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     name: state.folders,
-  //     processes: state.processes
-  //   })
-  // });
 }
 
 function init () {

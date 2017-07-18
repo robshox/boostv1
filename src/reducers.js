@@ -48,11 +48,10 @@ export const folders = (state, action) => {
       //var stringData = JSON.stringify(action.data)
       //console.log(stringData);
 
-
-      let setFolder = action.data/*{ name: action.data[0].name, id: +new Date };*/
+      let setFolder = action.data;/*{ name: action.data[0].name, id: +new Date };*/
       // May not need this could just use setFolder instead
       const allFolders = action.data.map(folder => {
-        return { id: +new Date, name: folder.name, arse: folder.name }
+        return { id: folder._id, name: folder.name }
       });
 
       return state.concat(allFolders); // got rid of that fucking array wrapper
@@ -61,7 +60,7 @@ export const folders = (state, action) => {
       );*/
     case 'ADD_FOLDER':
 
-      let newFolder = { name: action.data, id: +new Date };
+      let newFolder = { name: action.data.name, id: action.data._id };
 
       return state.concat([newFolder]);
 
@@ -73,20 +72,33 @@ export const processes = (state, action) => {
 //console.log('action process name '+ action.processName);
 //console.log('action dets '+ action.dets);
   switch (action.type) {
-    case 'RECEIVE_DATA':
-      return action.data.processes || state;
+    case 'RECEIVE_PROCESS_DATA':
+    console.log(action.data);
+    var stringData = JSON.stringify(action.data)
+    console.log(stringData);
+      let setProcess = action.data;
+      const allProcess = action.data.map(process => {
+        return { id: process._id, name: process.name, folder_name: process.folder_name }
+      });
+      return state.concat(allProcess);
+      //return action.data.processes || state;
     case 'ADD_PROCESS':
+      console.log('action.data');
+      console.log(action.data);
       let newProcess = Object.assign({}, {
-      processName: action.processName,
-      score: 1,
-      id: +new Date,
-      folderId: action.dets
+      processName: action.data.name,
+      id: action.data._id,
+      folder_name: action.data.folder_name
       });
       return state.concat([newProcess]);
       //
       // let newProcess = { name: action.data, id: +new Date };
       // return state.concat([newProcess]);
-    default:
+      case 'CLEAR_PROCESS':
+        // could use lodash _.uniq here
+        state.processes = [];
+        return state.processes
+      default:
       return state || [];
   }
 };

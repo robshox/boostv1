@@ -50,68 +50,56 @@ express()
 .use(bodyParser.urlencoded({ extended: true }))
 .use(bodyParser.json())
 .use(logger(':method :url :status :response-time ms - :res[content-length]'))
-.get('/api/data', (req, res) => res.json(data))
-.post('/api/data', (req, res) => res.json(data = req.body))
 .post('api/test', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' }); //Use postman post localhost:3333/test to test
 })
 .post('/api/folder', function(req,res) {
-
   var folder = new Folder(); // Create an new mongoose folder schema
-  folder.name = req.body.name;
-  console.log( folder.name );
-
+  folder.name = req.body.name; // Save folder name from body urlencoded
+  //console.log( folder._id );
   folder.save(function(err) {
     if (err)
-    res.send(err); // Switch this off when in production
-    res.json({ name: folder.name});
-    console.log('Folder was saved success')
-    //res.json({ message: 'Bear created!' });
+      res.send(err); // Switch this off when in production
+    res.json(folder); // Return saved object with ObjecId from MongoDB { __v: 0, name: 'Test3', _id: 59688b2e486ce3219a75e6bf }
  });
 })
 .post('/api/process', function(req, res) {
     var process = new Process();// Create a new mongoose folder schema
     process.name = req.body.name;
-    process.details = req.body.details;
+    //process.details = req.body.details;
    // convertStringFolder = parseInt(req.body.folder);
-    console.log(req.body.folder);
-    var convertId = new mongoose.Types.ObjectId(req.body.folder);
-    console.log( typeof convertId);
-    process._folder = convertId;
-    
+    console.log(req.body.folder_name);
+    //var convertId = new mongoose.Types.ObjectId(req.body.folder_id);
+    //console.log( typeof convertId);
+    process.folder_name = req.body.folder_name;
+
     console.log( process.name );
 
     process.save(function(err){
         if (err)
             res.send(err);
-        res.json({ name: process.name});
+        res.json(process);
         console.log('Process was saved success')
 
     });
 })
+.get('/api/process/:folder_id', function(req,res) {
+
+    Process.find({ 'folder_name': req.params.folder_id }, function (err, processes) {
+      if (err)
+        res.send(err);
+        res.json(processes);
+      });
+
+})
 .get('/api/getfolders', function(req,res) {
-	
+
     Folder.find(function(err, turkeys) {
         if (err)
             res.send(err);
             res.json(turkeys);
     });
-})
-.get('/api/getprocess/:folder_id', function(req,res) {
-	console.log(req.params.folder_id);
-	//var convertKit = '596773b9e61bfb0383092a8f' //new mongoose.Types.ObjectId(req.params.folder_id);
-	
-	Process.findById(req.params.folder_id, function(err, proc) {
-		if (err)
-		res.send(err);
-		res.json(proc);
-	});
-})	
-.get('/api/jedis', (req, res) => {
-  const allJedis = jedis.map(jedi => {
-    return { id: jedi.id, name: jedi.name }
-  });
-  res.json(allJedis);
+
 })
 .get('/api/jedis/:id', authCheck, (req, res) => {
   res.json(jedis.filter(jedi => jedi.id === parseInt(req.params.id))[0]);
